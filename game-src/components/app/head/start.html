@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <script>
+        (function(){
+            // 动态设置html字体大小
+            var psdWidth = 1080; //效果图宽度
+            var psdFont = 100; //效果图宽度下对应的html字体大小
+            var fixRoot = function(){
+                document.documentElement.style.fontSize = (document.documentElement.offsetWidth / psdWidth) * psdFont + 'px';
+            };
+            fixRoot();
+            document.addEventListener("DOMContentLoaded", function() {
+                fixRoot();
+            }, false);
+            window.addEventListener('resize', function(){
+                fixRoot();
+            }, false);
+        })();
+    </script><!--ignore-->

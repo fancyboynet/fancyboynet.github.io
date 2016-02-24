@@ -1,0 +1,15 @@
+{
+  "name": "fis3-hei-demo",
+  "version": "0.0.1",
+  "description": "基于fis3的纯静态解决方案",
+  "author": "Fancy <fancyboynet@gmail.com>",
+  "license": "BSD",
+  "repository": "https://github.com/fancyboynet/fis3-hei-demo.git",
+  "dependencies": {
+    "fis-parser-utc": "0.0.2",
+    "fis3": "^3.3.16",
+    "fis3-hook-commonjs": "^0.1.10",
+    "fis3-parser-html-uri": "^1.0.0",
+    "fis3-postpackager-loader": "^1.0.17"
+  }
+}
