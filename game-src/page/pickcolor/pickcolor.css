@@ -2,12 +2,21 @@
  * @require app/common/common.css
  */
 #container{
+    clear: both;
     border: 2px solid red;
     padding: 2%;
 }
 #levelWrap{
-    text-align: center;
+    float: left;
     margin: .5rem;
+}
+#timeWrap{
+    float: right;
+    margin: .5rem;
+}
+#level,#time{
+    color: red;
+    font-weight: bold;
 }
 .tips{
     color: #ccc;
