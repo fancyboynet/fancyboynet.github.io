@@ -179,6 +179,7 @@ var box = {
         self._$level = $('#level');
         self._$btnStart = $('#btnStart');
         self._$time = $('#time');
+        self._$total = $('#total');
         self._resetConfig();
         self._opt = {
             len : 5
@@ -196,6 +197,7 @@ var box = {
         var self = this;
         self.disableStart();
         self._resetConfig();
+        self._hideTotal();
         self._isStarted = true;
         self._resetCountDown();
         self._updateLevel();
@@ -224,7 +226,9 @@ var box = {
     _save : function(){
         var self = this;
         leanCloud.save(self._getLevel(), function(data){
-
+            if(list){
+                list.update();
+            }
         }, function(err){
 
         })
@@ -232,7 +236,16 @@ var box = {
     _over : function(){
         var self = this;
         self._isStarted = false;
+        self._showTotal();
         self.enableStart('重新挑战');
+    },
+    _showTotal : function(){
+        var self = this;
+        self._$total.show().find('strong').text(self._getLevel());
+    },
+    _hideTotal : function(){
+        var self = this;
+        self._$total.hide();
     },
     _clearCountDown : function(){
         var self = this;
