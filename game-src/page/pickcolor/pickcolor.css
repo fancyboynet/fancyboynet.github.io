@@ -5,6 +5,7 @@
     clear: both;
     border: 2px solid red;
     padding: 2%;
+    margin: .5rem;
 }
 #levelWrap{
     float: left;
@@ -25,10 +26,13 @@
 }
 ol li{
     list-style-type: decimal;
+    list-style-position:inside;
     line-height: 2;
 }
 .list{
-    padding: 2em;
+    border-top: 2px solid #ccc;
+    padding: .5rem;
+    margin: .5rem 0;
 }
 .list strong{
     margin: 0 .5em;
@@ -37,12 +41,15 @@ ol li{
 }
 .first{
     border-bottom: 2px solid #ccc;
-    border-top: 2px solid #ccc;
     padding: 2em;
     background: #ddd;
 }
 .first div{
     margin: 1em 0;
+}
+.first input{
+    border: 1px solid #ccc;
+    height: 1.5em;
 }
 #btnStart{
     display: block;

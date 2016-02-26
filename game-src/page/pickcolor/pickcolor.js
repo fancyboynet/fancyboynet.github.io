@@ -256,10 +256,10 @@ var box = {
                 'position' : 'relative'
             }).find('div').css({
                 'position' : 'absolute',
-                'top':'1%',
-                'bottom':'1%',
-                'left':'1%',
-                'right':'1%',
+                'top':'2%',
+                'bottom':'2%',
+                'left':'2%',
+                'right':'2%',
                 'background-color' : color.normal
             });
             $div.append($color);
