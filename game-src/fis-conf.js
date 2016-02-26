@@ -123,7 +123,11 @@ fis.media('prod')
 // pack
 fis.media('prod')
     .match('/components/jquery/jquery.js', { //常用公用组件单独合并打包
-        packTo: '/pkg/lib.js'
+        packTo: '/pkg/lib.js',
+        useHash : false
+    })
+    .match('/lib/mod.js', {
+        useHash : false
     })
     // 启用打包插件，必须匹配 ::packager
     .match('::packager', {
