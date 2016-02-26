@@ -205,7 +205,7 @@ var box = {
         var self = this;
         self._level = 0;
         self._vol = 20;
-        self._count = 1;
+        self._count = 8;
     },
     _resetCountDown : function(){
         var self = this;
