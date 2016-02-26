@@ -30,6 +30,11 @@ ol li{
 .list{
     padding: 2em;
 }
+.list strong{
+    margin: 0 .5em;
+    color: red;
+    font-size: 1.2em;
+}
 .first{
     border-bottom: 2px solid #ccc;
     border-top: 2px solid #ccc;
@@ -44,4 +49,7 @@ ol li{
     width: 8em;
     height: 3em;
     margin: 0 auto;
+}
+.myself{
+    background: #ddd;
 }

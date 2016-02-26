@@ -1,6 +1,8 @@
 var $ = require('jquery/jquery');
 var FastClick = require('fastclick/fastclick');
 var until = require('app/until/until');
+var tplList = __inline('list.tpl');
+
 var leanCloud = {
     init : function(){
         var self = this;
@@ -24,7 +26,7 @@ var leanCloud = {
         }).then(function(data) {
             //注册或者登录成功
             onSuccess && onSuccess(data);
-        }, function(error) {
+        }, function(err) {
             // 失败
             onFail && onFail(err);
         });
@@ -34,14 +36,50 @@ var leanCloud = {
     },
     save : function(level, onSuccess, onFail){
         var self = this;
-
+        var query = new AV.Query(self._PickColor);
+        var pickColor = new self._PickColor();
+        query.equalTo('user', self.getCurrentUser());
+        query.find().then(function(results){
+            if(!results[0]){
+                pickColor = new self._PickColor();
+                pickColor.set('level', level);
+                pickColor.set('user', self.getCurrentUser());
+                return pickColor.save();
+            }
+            pickColor = results[0];
+            if(pickColor.get('level') >= level){
+                onSuccess && onSuccess(pickColor);
+                return;
+            }
+            pickColor.set('level', level);
+            return pickColor.save();
+        }, function(err){
+            onFail && onFail(err);
+        }).then(function(data){
+            onSuccess && onSuccess(data);
+        }, function(err){
+            onFail && onFail(err);
+        });
+    },
+    getList : function(onSuccess, onFail){
+        var self = this;
+        var query = new AV.Query(self._PickColor);
+        // 降序
+        query.addDescending('level');
+        query.include("user");
+        query.find().then(function(data) {
+            onSuccess && onSuccess(data);
+        }, function(err) {
+            onFail && onFail(err);
+        });
     }
 };
+
 var login = {
     init : function(){
         var self = this;
         if(leanCloud.getCurrentUser()){
-            box.enableStart();
+            box && box.enableStart();
             return;
         }
         self._$first = $('#first').show();
@@ -102,7 +140,7 @@ var login = {
             }
             leanCloud.verify(self.getPhone(), self._getCode(), function(){
                 self._hide();
-                box.enableStart();
+                box && box.enableStart();
             }, function(err){
                 alert(err.message);
             });
@@ -133,6 +171,7 @@ var login = {
         self._$first.remove();
     }
 };
+
 var box = {
     init : function(){
         var self = this;
@@ -140,8 +179,7 @@ var box = {
         self._$level = $('#level');
         self._$btnStart = $('#btnStart');
         self._$time = $('#time');
-        self._level = 0;
-        self._vol = 20;
+        self._resetConfig();
         self._opt = {
             len : 5
         };
@@ -151,33 +189,45 @@ var box = {
     _initBtnStart : function(){
         var self = this;
         self._$btnStart.on('click', function(){
-            self._update();
             self._start();
         });
     },
     _start : function(){
         var self = this;
-        self._isStarted = true;
         self.disableStart();
+        self._resetConfig();
+        self._isStarted = true;
         self._resetCountDown();
+        self._updateLevel();
+        self._update();
+    },
+    _resetConfig : function(){
+        var self = this;
+        self._level = 0;
+        self._vol = 20;
+        self._count = 1;
     },
     _resetCountDown : function(){
         var self = this;
-        var second = 5;
+        var count = self._count;
         self._clearCountDown();
         self._countDown = setInterval(function(){
-            self._$time.text(second);
-            if(second < 1){
+            self._$time.text(count);
+            if(count < 1){
                 self._clearCountDown();
                 self._over();
                 self._save();
             }
-            second = second - 1;
+            count = count - 1;
         }, 1000);
     },
     _save : function(){
         var self = this;
-        console.log('_save', self._getLevel());
+        leanCloud.save(self._getLevel(), function(data){
+
+        }, function(err){
+
+        })
     },
     _over : function(){
         var self = this;
@@ -223,9 +273,13 @@ var box = {
     },
     _pickRight : function(){
         var self = this;
-        self._$level.text(++self._level);
+        self._updateLevel(++self._level);
         self._update();
         self._resetCountDown();
+    },
+    _updateLevel : function(level){
+        var self = this;
+        self._$level.text(level === undefined ? self._level : level);
     },
     _getVol : function(){
         var self = this;
@@ -285,7 +339,35 @@ var box = {
     },
     enableStart : function(text){
         var self = this;
-        self._$btnStart.removeAttr('disabled').text(text === undefined ? '开始挑战啦' : text);
+        self._$btnStart.removeAttr('disabled').text(text === undefined ? '我要挑战' : text);
+    }
+};
+
+var list = {
+    init : function(){
+        var self = this;
+        self._$list = $('#list');
+        self.update();
+    },
+    update : function(){
+        var self = this;
+        leanCloud.getList(function(data){
+            self._$list.html(tplList({
+                data : self._parseSeverData(data),
+                myId : leanCloud.getCurrentUser() ? leanCloud.getCurrentUser().id : ''
+            }));
+        });
+    },
+    _parseSeverData : function(serverData){
+        var data = [];
+        $.each(serverData, function(i, v){
+            data.push({
+                "userId" : v.get('user').id,
+                "phone" : v.get('user').get('mobilePhoneNumber'),
+                "level" : v.get('level')
+            });
+        });
+        return data;
     }
 };
 
@@ -294,4 +376,5 @@ $(function(){
     leanCloud.init();
     box.init();
     login.init();
+    list.init();
 });

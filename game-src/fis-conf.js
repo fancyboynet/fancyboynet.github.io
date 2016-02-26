@@ -1,5 +1,6 @@
 var staticRoot = '/static'; //实际静态资源根目录
 var tplRoot = '/templates'; //模版根目录
+var prodRoot = '/game';
 
 fis.hook('commonjs');
 
@@ -115,6 +116,9 @@ fis.media('prod')
     })
     .match('*.png', {
         optimizer: fis.plugin('png-compressor') // 用 fis-optimizer-png-compressor 压缩 png 图片
+    })
+    .match('*.{js,css,png,jpg,jpeg,gif}', {
+        url : prodRoot + staticRoot + '$0'
     });
 
 // pack
