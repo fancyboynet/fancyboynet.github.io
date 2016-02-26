@@ -94,13 +94,12 @@ fis.media('prod')
     .match('*.{scss,map}', {
         release: false
     })
-    //暂时关闭hash值，因为还没想好前端页面hash变化后，服务端页面如何更好地做对应更改
-    //.match('*.{css,js}', {
-    //    useHash : true
-    //})
-    //.match('image', {
-    //    useHash: true
-    //})
+    .match('*.{css,js}', {
+        useHash : true
+    })
+    .match('image', {
+        useHash: true
+    })
     .match('*.js', {
         optimizer: fis.plugin('uglify-js', {
             mangle: {

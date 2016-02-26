@@ -1,0 +1,1 @@
+define("app/until/until",function(t,e,n){n.exports={redirect:function(t){window.location.href=t},isValidPhone:function(t){return/^1\d{10}$/i.test(t)},isValidCode:function(t){return/^\d+$/i.test(t)},localStorage:{setItem:function(t,e){window.localStorage.setItem(t,e)},getItem:function(t){return window.localStorage.getItem(t)}}}});
