@@ -1,0 +1,10 @@
+{
+    "name": "animate.css",
+    "description": "*Just-add-water CSS animation*",
+    "repos": "https://github.com/daneden/animate.css.git",
+    "tag": "master",
+    "reposType": "npm",
+    "dependencies": {},
+    "main": "animate.css",
+    "version": "3.4.0"
+}

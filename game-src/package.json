@@ -1,10 +1,9 @@
 {
-  "name": "fis3-hei-demo",
+  "name": "fancy-game",
   "version": "0.0.1",
-  "description": "基于fis3的纯静态解决方案",
+  "description": "just for fun",
   "author": "Fancy <fancyboynet@gmail.com>",
   "license": "BSD",
-  "repository": "https://github.com/fancyboynet/fis3-hei-demo.git",
   "dependencies": {
     "fis-parser-utc": "0.0.2",
     "fis3": "^3.3.16",

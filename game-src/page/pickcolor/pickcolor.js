@@ -198,6 +198,7 @@ var box = {
         self.disableStart();
         self._resetConfig();
         self._hideTotal();
+        self._hideDiff();
         self._isStarted = true;
         self._resetCountDown();
         self._updateLevel();
@@ -237,7 +238,16 @@ var box = {
         var self = this;
         self._isStarted = false;
         self._showTotal();
+        self._showDiff();
         self.enableStart('重新挑战');
+    },
+    _showDiff : function(){
+        var self = this;
+        self._$container.find('diff').addClass('animated');
+    },
+    _hideDiff : function(){
+        var self = this;
+        self._$container.find('diff').removeClass('animated');
     },
     _showTotal : function(){
         var self = this;
@@ -277,7 +287,7 @@ var box = {
             });
             $div.append($color);
         }
-        $div.children().eq(index).find('div').css('background-color', color.special).on('click', function(){
+        $div.children().eq(index).addClass('diff infinite bounce').find('div').css('background-color', color.special).on('click', function(){
             if(self._isStarted){
                 self._pickRight();
             }
@@ -298,14 +308,16 @@ var box = {
         var self = this;
         var params = [
             [0, 20],
-            [9, 18],
-            [19, 16],
-            [29, 15],
-            [39, 14],
-            [49, 12],
-            [59, 10],
-            [69, 8],
-            [79, 5]
+            [9, 16],
+            [19, 14],
+            [29, 12],
+            [39, 10],
+            [49, 8],
+            [59, 7],
+            [69, 6],
+            [79, 5],
+            [89, 3],
+            [Number.MAX_VALUE, 1]
         ];
         var vol;
         $.each(params, function(i, v){
