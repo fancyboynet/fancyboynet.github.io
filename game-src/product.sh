@@ -18,7 +18,7 @@ printf "${Green}done${RED}($(($ENDTIME - $STARTTIME))s)\n"
 
 printf "${Green}将编译好的资源复制到对应资源目录下...\n"
 STARTTIME=$(date +%s)
-cp -af output/static ../game/static
+cp -af output/static ../game
 cp -af output/templates ../game
 ENDTIME=$(date +%s)
 printf "${Green}done${RED}($(($ENDTIME - $STARTTIME))s)\n"
