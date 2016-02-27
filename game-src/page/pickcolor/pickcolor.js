@@ -67,6 +67,7 @@ var leanCloud = {
         // 降序
         query.addDescending('level');
         query.include("user");
+        query.limit(10);
         query.find().then(function(data) {
             onSuccess && onSuccess(data);
         }, function(err) {
