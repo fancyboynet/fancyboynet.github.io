@@ -243,11 +243,11 @@ var box = {
     },
     _showDiff : function(){
         var self = this;
-        self._$container.find('diff').addClass('animated');
+        self._$container.find('.diff').addClass('animated');
     },
     _hideDiff : function(){
         var self = this;
-        self._$container.find('diff').removeClass('animated');
+        self._$container.find('.diff').removeClass('animated');
     },
     _showTotal : function(){
         var self = this;
