@@ -1,1 +1,0 @@
-define("app/red/red",function(e,d,r){var n=e("jquery/jquery");r.exports=function(e){n(e).addClass("modTest")}});
