@@ -1,1 +1,0 @@
-# Knowledge is the key to a better life. 
