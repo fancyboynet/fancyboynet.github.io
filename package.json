@@ -1,0 +1,40 @@
+{
+  "name": "rubik-pure-scaffold",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build-cdn": "cross-env CDN_ENV=true rubik build",
+    "build-no-hash": "cross-env NO_HASH_ENV=true rubik build",
+    "build": "rubik build",
+    "start": "rubik serve",
+    "lint": "rubik lint"
+  },
+  "keywords": [
+    "rubik",
+    "webpack",
+    "multiple",
+    "pages"
+  ],
+  "author": "Fancy <fancyboynet@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
+    "rubik-cli": "^0.6.0"
+  },
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-merge": "rubik check-package",
+      "post-checkout": "rubik check-package"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "rubik lint",
+      "git add"
+    ]
+  }
+}
