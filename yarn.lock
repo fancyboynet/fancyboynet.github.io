@@ -8431,10 +8431,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rubik-cli@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/rubik-cli/-/rubik-cli-1.1.5.tgz#4076f22749a9c66ce7d68f4f53c2ff8a625d3b75"
-  integrity sha512-ZpFswmWTIMmoVFzzkV6/V7H7OjlSHdbeZ3msf0AS57k6nvwBx0bxTf3adyj0IPAtdIO3PwtIv6vtf2KUNLOGJA==
+rubik-cli@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/rubik-cli/-/rubik-cli-1.2.4.tgz#67b96007c938f363203a2793381ebebbc5d96b39"
+  integrity sha512-h3j49+0LKZnAJ7TTr0nHKoWe/G1EOOFYEnAtxDf4uDqtZQI9u2bpwcZM4hu2GytdcxpcYb8O8XhPAf2DKfLiSw==
   dependencies:
     "@babel/core" "^7.5.5"
     "@babel/plugin-proposal-object-rest-spread" "^7.5.5"
@@ -8461,6 +8461,7 @@ rubik-cli@^1.1.5:
     copy-webpack-plugin "^5.0.3"
     cross-env "^5.1.4"
     css-loader "^3.1.0"
+    debug "^4.1.1"
     download-git-repo "^2.0.0"
     eslint "^6.0.1"
     eslint-config-standard "^14.1.0"

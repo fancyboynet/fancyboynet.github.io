@@ -21,7 +21,7 @@
     "cross-env": "^5.2.0",
     "husky": "^3.0.0",
     "lint-staged": "^9.1.0",
-    "rubik-cli": "^1.1.5"
+    "rubik-cli": "^1.2.4"
   },
   "dependencies": {},
   "husky": {
